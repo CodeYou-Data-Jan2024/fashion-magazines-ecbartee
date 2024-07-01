@@ -21,22 +21,22 @@ import os
 #               of the query. default is "data/fashion_magazines.csv"
 
 
-def get_paths() -> tuple:
-    """Get the paths names from the arguments passed in
-    @return a tuple containing (path_to_db, path_to_sql, path_to_csv)
-    """
-    parser = argparse.ArgumentParser()
-    parser.add_argument("db", nargs="?",
-                        help="path to the sqlite3 database file", 
-                        default="db/fashion_magazines.db")
-    parser.add_argument("sql", nargs="?",
-                        help="path to the file containing the sql query",
-                        default="sql/fashion_magazines.sql")
-    parser.add_argument("csv", nargs="?",
-                        help="path to the csv file that will be created",
-                        default="data/fashion_magazines.csv")
-    args = parser.parse_args()
-    return args.db, args.sql, args.csv
+# def get_paths() -> tuple:
+#     """Get the paths names from the arguments passed in
+#     @return a tuple containing (path_to_db, path_to_sql, path_to_csv)
+#     """
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("db", nargs="?",
+#                         help="path to the sqlite3 database file", 
+#                         default="C:/Users/emily.bartee/Documents/Projects/FashionMagazine/fashion-magazines-ecbartee/db/fashion_magazines.db")
+#     parser.add_argument("sql", nargs="?",
+#                         help="path to the file containing the sql query",
+#                         default="C:/Users/emily.bartee/Documents/Projects/FashionMagazine/fashion-magazines-ecbartee/sql/fashion_magazines.sql")
+#     parser.add_argument("csv", nargs="?",
+#                         help="path to the csv file that will be created",
+#                         default="C:/Users/emily.bartee/Documents/Projects/FashionMagazine/fashion-magazines-ecbartee/data/fashion_magazines.csv")
+#     args = parser.parse_args()
+#     return args.db, args.sql, args.csv
 
 
 def create_connection(path_to_db_file: str) -> sqlite3.Connection:
@@ -47,6 +47,7 @@ def create_connection(path_to_db_file: str) -> sqlite3.Connection:
     """
     conn = None
     try:
+        path_to_db_file = "C:/Users/emily.bartee/Documents/Projects/FashionMagazine/fashion-magazines-ecbartee/db/fashion_magazines.db"
         conn = sqlite3.connect(path_to_db_file)
         return conn
     except Error as e:
@@ -67,7 +68,9 @@ def get_sql(file_path: str) -> str:
 
 
 def main() -> None:
-    path_to_db, path_to_sql, path_to_csv = get_paths()
+    path_to_db = "C:/Users/emily.bartee/Documents/Projects/FashionMagazine/fashion-magazines-ecbartee/db/fashion_magazines.db"
+    path_to_sql = "C:/Users/emily.bartee/Documents/Projects/FashionMagazine/fashion-magazines-ecbartee/sql/fashion_magazines.sql"
+    path_to_csv = "C:/Users/emily.bartee/Documents/Projects/FashionMagazine/fashion-magazines-ecbartee/data/fashion_magazines.csv"
     conn = create_connection(path_to_db)
     sql = get_sql(path_to_sql)
     
